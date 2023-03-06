@@ -52,7 +52,7 @@ resultados_pb$`Cor ou raça`[resultados_pb$`Cor ou raça` == "Parda"] <- "Negra"
 
 resultados_I01 <- resultados_pb[resultados_pb$`I01`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I01)
+#Tabela de contingência (Raça x I01)
 
 table(resultados_I01$`Cor ou raça`, resultados_I01$`I01`)
 
@@ -87,6 +87,7 @@ contrib_I01 <- 100*residuos_I01$residuals^2/residuos_I01$statistic
 round(contrib_I01, 3)
 corrplot(contrib_I01, is.cor = FALSE)
 
+#------------------------------------------------------------------------------
 
 #Teste Qui-Quadrado Homogeneidade para I02 (Ausência de Banheiro)
 
@@ -96,7 +97,7 @@ corrplot(contrib_I01, is.cor = FALSE)
 resultados_corrplot(contrib_I03, is.cor = FALSE)
  <- resultados_pb[resultados_pb$`I02`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I02)
+#Tabela de contingência (Raça x I02)
 
 table(resultados_I02$`Cor ou raça`, resultados_I02$`I02`)
 
@@ -131,40 +132,6 @@ contrib_I02 <- 100*residuos_I02$residuals^2/residuos_I02$statistic
 round(contrib_I02, 3)
 corrplot(contrib_I02, is.cor = FALSE)
 
-#Regressão Logística (Raça x I01)
-
-colnames(resultados_I01)[47] <- "Cor ou raca"
-
-regressao_I01 <- resultados_I01
-
-regressao_I01$`I01`[regressao_I01$`I01` == "Adequado"] <- 1
-regressao_I01$`I01`[regressao_I01$`I01` == "Inadequado"] <- 0
-
-colnames(regressao_I01)[47] <- "Negra"
-
-colnames(regressao_I01)[151] <- "I01"
-regressao_I01$`Branca` <- regressao_I01$Negra
-
-
-regressao_I01$I01 <- as.numeric(as.character(regressao_I01$I01))
-regressao_I01$I01 <- as.numeric(as.character(regressao_I01$I01))
-
-regressao_I01$`Cor ou raca`[regressao_I01$`Cor ou raca` == "Negra"] <- 1 
-regressao_I01$`Cor ou raca`[regressao_I01$`Cor ou raca` == "Branca"] <- 0 
-
-regressao_I01$`Cor ou raca` <- factor(regressao_I01$`Cor ou raca`)
-
-mylogit_I01 <- glm(`I01` ~ `Cor ou raca`, data = regressao_I01, family = binomial(link="logit")) 
-summary(mylogit_I01)                      
-
-
-ggplot(regressao_I01, aes(x=`Cor ou raca`, y=`I01`)) + 
-  geom_point() + 
-  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
-
-logit=glm(I01~`Cor ou raca`, data=regressao_I01, family = binomial(link="logit"))
-summary(logit)
-
 #------------------------------------------------------------------------------
 
 #Teste Qui-Quadrado Homogeneidade para I03 (Material de Piso Inadequado)
@@ -173,7 +140,7 @@ summary(logit)
 
 resultados_I03 <- resultados_pb[resultados_pb$`I03`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I03)
+#Tabela de contingência (Raça x I03)
 
 table(resultados_I03$`Cor ou raça`, resultados_I03$`I03`)
 
@@ -216,7 +183,7 @@ corrplot(contrib_I03, is.cor = FALSE)
 
 resultados_I04 <- resultados_pb[resultados_pb$`I04`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I04)
+#Tabela de contingência (Raça x I04)
 
 table(resultados_I04$`Cor ou raça`, resultados_I04$`I04`)
 
@@ -259,7 +226,7 @@ corrplot(contrib_I04, is.cor = FALSE)
 
 resultados_I05 <- resultados_pb[resultados_pb$`I05`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I05)
+#Tabela de contingência (Raça x I05)
 
 table(resultados_I05$`Cor ou raça`, resultados_I05$`I05`)
 
@@ -304,7 +271,7 @@ corrplot(contrib_I05, is.cor = FALSE)
 
 resultados_I06 <- resultados_pb[resultados_pb$`I06`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I06)
+#Tabela de contingência (Raça x I06)
 
 table(resultados_I06$`Cor ou raça`, resultados_I06$`I06`)
 
@@ -349,7 +316,7 @@ corrplot(contrib_I06, is.cor = FALSE)
 
 resultados_I07 <- resultados_pb[resultados_pb$`I07`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I07)
+#Tabela de contingência (Raça x I07)
 
 table(resultados_I07$`Cor ou raça`, resultados_I07$`I07`)
 
@@ -394,7 +361,7 @@ corrplot(contrib_I07, is.cor = FALSE)
 
 resultados_I08 <- resultados_pb[resultados_pb$`I08`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I08)
+#Tabela de contingência (Raça x I08)
 
 table(resultados_I08$`Cor ou raça`, resultados_I08$`I08`)
 
@@ -437,7 +404,7 @@ corrplot(contrib_I08, is.cor = FALSE)
 
 resultados_I09 <- resultados_pb[resultados_pb$`I09`!= "Sem Dados ou Não Aplicável",] 
 
-#Tabela de contigêcia (Raça x I09)
+#Tabela de contingência (Raça x I09)
 
 table(resultados_I09$`Cor ou raça`, resultados_I09$`I09`)
 
@@ -473,3 +440,348 @@ round(contrib_I09, 3)
 corrplot(contrib_I09, is.cor = FALSE)
 
 #------------------------------------------------------------------------------
+
+#Teste Qui-Quadrado Homogeneidade para D01 (Domicílio improvisado)
+
+#Removendo Sem Dados ou Não Aplicável das categorias de D01
+
+resultados_D01 <- resultados_pb[resultados_pb$`D01`!= "Sem Dados ou Não Aplicável",] 
+
+#Tabela de contingência (Raça x D01)
+
+table(resultados_D01$`Cor ou raça`, resultados_D01$`D01`)
+
+racahab_D01 <- table(resultados_D01$`Cor ou raça`, resultados_D01$`D01`)
+
+EiD01 <- outer(rowSums(racahab_D01), colSums(racahab_D01), "*")/sum(racahab_D01)
+
+chisq.test(racahab_D01)$expected
+
+chisq.test(racahab_D01, correct = FALSE)
+
+#Gráfico de proporções de frequência (Raça x D01)
+
+ggstatsplot::ggbarstats(
+  data = resultados_D01,
+  x = `D01`, 
+  y = `Cor ou raça`, 
+  title = "Déficit habitacional por Domicílio improvisado", 
+  xlab = "Cor ou raça", 
+  legend.title = "Domicílio improvisado" 
+)
+
+#cálculo dos resíduos (Raça x D01)
+
+residuos_D01 <- chisq.test(resultados_D01$`Cor ou raça`, resultados_D01$`D01`)
+round(residuos_D01$residuals, 3)
+corrplot(residuos_D01$residuals, is.cor = FALSE)
+
+#cálculo da contribuição das células (Raça x D01)
+
+contrib_D01 <- 100*residuos_D01$residuals^2/residuos_D01$statistic
+round(contrib_D01, 3)
+corrplot(contrib_D01, is.cor = FALSE)
+
+#-----------------------------------------------------------------------------
+
+#Teste Qui-Quadrado Homogeneidade para D02 (Material de Parede Inadequado)
+
+#Removendo Sem Dados ou Não Aplicável das categorias de D02
+
+resultados_D02 <- resultados_pb[resultados_pb$`D02`!= "Sem Dados ou Não Aplicável",] 
+
+#Tabela de contingência (Raça x D02)
+
+table(resultados_D02$`Cor ou raça`, resultados_D02$`D02`)
+
+racahab_D02 <- table(resultados_D02$`Cor ou raça`, resultados_D02$`D02`)
+
+EiD02 <- outer(rowSums(racahab_D02), colSums(racahab_D02), "*")/sum(racahab_D02)
+
+chisq.test(racahab_D02)$expected
+
+chisq.test(racahab_D02, correct = FALSE)
+
+#Gráfico de proporções de frequência (Raça x D02)
+
+ggstatsplot::ggbarstats(
+  data = resultados_D02,
+  x = `D02`, 
+  y = `Cor ou raça`, 
+  title = "Déficit habitacional por Material de Parede Inadequado", 
+  xlab = "Material de Parede Inadequado", 
+  legend.title = "Domicílio improvisado" 
+)
+
+#cálculo dos resíduos (Raça x D02)
+
+residuos_D02 <- chisq.test(resultados_D02$`Cor ou raça`, resultados_D02$`D02`)
+round(residuos_D02$residuals, 3)
+corrplot(residuos_D02$residuals, is.cor = FALSE)
+
+#cálculo da contribuição das células (Raça x D02)
+
+contrib_D02 <- 100*residuos_D02$residuals^2/residuos_D02$statistic
+round(contrib_D02, 3)
+corrplot(contrib_D02, is.cor = FALSE)
+
+#-----------------------------------------------------------------------------
+
+#Teste Qui-Quadrado Homogeneidade para D03 (Densidade Excessiva em Apartamento ou Lote Condominial)
+
+#Removendo Sem Dados ou Não Aplicável das categorias de D03
+
+resultados_D03 <- resultados_pb[resultados_pb$`D03`!= "Sem Dados ou Não Aplicável",] 
+
+#Tabela de contingência (Raça x D03)
+
+table(resultados_D03$`Cor ou raça`, resultados_D03$`D03`)
+
+racahab_D03 <- table(resultados_D03$`Cor ou raça`, resultados_D03$`D03`)
+
+EiD03 <- outer(rowSums(racahab_D03), colSums(racahab_D03), "*")/sum(racahab_D03)
+
+chisq.test(racahab_D03)$expected
+
+chisq.test(racahab_D03, correct = FALSE)
+
+#Gráfico de proporções de frequência (Raça x D03)
+
+ggstatsplot::ggbarstats(
+  data = resultados_D03,
+  x = `D03`, 
+  y = `Cor ou raça`, 
+  title = "Déficit habitacional por Densidade Excessiva em Apartamento ou Lote Condominial", 
+  xlab = "Material de Parede Inadequado", 
+  legend.title = "Densidade Excessiva em Apartamento ou Lote Condominial" 
+)
+
+#cálculo dos resíduos (Raça x D03)
+
+residuos_D03 <- chisq.test(resultados_D03$`Cor ou raça`, resultados_D03$`D03`)
+round(residuos_D03$residuals, 3)
+corrplot(residuos_D03$residuals, is.cor = FALSE)
+
+#cálculo da contribuição das células (Raça x D03)
+
+contrib_D03 <- 100*residuos_D03$residuals^2/residuos_D03$statistic
+round(contrib_D03, 3)
+corrplot(contrib_D03, is.cor = FALSE)
+
+#-----------------------------------------------------------------------------
+
+#Teste Qui-Quadrado Homogeneidade para D04 (Coabitação)
+
+#Removendo Sem Dados ou Não Aplicável das categorias de D04
+
+resultados_D04 <- resultados_pb[resultados_pb$`D04`!= "Sem Dados ou Não Aplicável",] 
+
+#Tabela de contingência (Raça x D04)
+
+table(resultados_D04$`Cor ou raça`, resultados_D04$`D04`)
+
+racahab_D04 <- table(resultados_D04$`Cor ou raça`, resultados_D04$`D04`)
+
+EiD04 <- outer(rowSums(racahab_D04), colSums(racahab_D04), "*")/sum(racahab_D04)
+
+chisq.test(racahab_D04)$expected
+
+chisq.test(racahab_D04, correct = FALSE)
+
+#Gráfico de proporções de frequência (Raça x D04)
+
+ggstatsplot::ggbarstats(
+  data = resultados_D04,
+  x = `D04`, 
+  y = `Cor ou raça`, 
+  title = "Déficit habitacional por Coabitação", 
+  xlab = "Cor ou raca", 
+  legend.title = "Coabitação" 
+)
+
+#cálculo dos resíduos (Raça x D04)
+
+residuos_D04 <- chisq.test(resultados_D04$`Cor ou raça`, resultados_D04$`D04`)
+round(residuos_D04$residuals, 3)
+corrplot(residuos_D04$residuals, is.cor = FALSE)
+
+#cálculo da contribuição das células (Raça x D04)
+
+contrib_D04 <- 100*residuos_D04$residuals^2/residuos_D04$statistic
+round(contrib_D04, 3)
+corrplot(contrib_D04, is.cor = FALSE)
+
+#-----------------------------------------------------------------------------
+
+#Teste Qui-Quadrado Homogeneidade para D04 (Coabitação)
+
+#Removendo Sem Dados ou Não Aplicável das categorias de D04
+
+resultados_D04 <- resultados_pb[resultados_pb$`D04`!= "Sem Dados ou Não Aplicável",] 
+
+#Tabela de contingência (Raça x D04)
+
+table(resultados_D04$`Cor ou raça`, resultados_D04$`D04`)
+
+racahab_D04 <- table(resultados_D04$`Cor ou raça`, resultados_D04$`D04`)
+
+EiD04 <- outer(rowSums(racahab_D04), colSums(racahab_D04), "*")/sum(racahab_D04)
+
+chisq.test(racahab_D04)$expected
+
+chisq.test(racahab_D04, correct = FALSE)
+
+#Gráfico de proporções de frequência (Raça x D04)
+
+ggstatsplot::ggbarstats(
+  data = resultados_D04,
+  x = `D04`, 
+  y = `Cor ou raça`, 
+  title = "Déficit habitacional por Coabitação", 
+  xlab = "Cor ou raça", 
+  legend.title = "Coabitação" 
+)
+
+#cálculo dos resíduos (Raça x D04)
+
+residuos_D04 <- chisq.test(resultados_D04$`Cor ou raça`, resultados_D04$`D04`)
+round(residuos_D04$residuals, 3)
+corrplot(residuos_D04$residuals, is.cor = FALSE)
+
+#cálculo da contribuição das células (Raça x D04)
+
+contrib_D04 <- 100*residuos_D04$residuals^2/residuos_D04$statistic
+round(contrib_D04, 3)
+corrplot(contrib_D04, is.cor = FALSE)
+
+#-----------------------------------------------------------------------------
+
+#Teste Qui-Quadrado Homogeneidade para D05 (Moradia de Aluguel com
+#Inadequações da Edificação ou da Edificação à família que demandam reformas)
+
+#Removendo Sem Dados ou Não Aplicável das categorias de D05
+
+resultados_D05 <- resultados_pb[resultados_pb$`D05`!= "Sem Dados ou Não Aplicável",] 
+
+#Tabela de contingência (Raça x D05)
+
+table(resultados_D05$`Cor ou raça`, resultados_D05$`D05`)
+
+racahab_D05 <- table(resultados_D05$`Cor ou raça`, resultados_D05$`D05`)
+
+EiD05 <- outer(rowSums(racahab_D05), colSums(racahab_D05), "*")/sum(racahab_D05)
+
+chisq.test(racahab_D05)$expected
+
+chisq.test(racahab_D05, correct = FALSE)
+
+#Gráfico de proporções de frequência (Raça x D05)
+
+ggstatsplot::ggbarstats(
+  data = resultados_D05,
+  x = `D05`, 
+  y = `Cor ou raça`, 
+  title = "Déficit habitacional por Moradia de Aluguel com Inadequações da Edificação 
+  ou da Edificação à família que demandam reformas", 
+  xlab = "Cor ou raça", 
+  legend.title = "Moradia de Aluguel com Inadequações da Edificação 
+  ou da Edificação à família que demandam reformas" 
+)
+
+#cálculo dos resíduos (Raça x D05)
+
+residuos_D05 <- chisq.test(resultados_D05$`Cor ou raça`, resultados_D05$`D05`)
+round(residuos_D05$residuals, 3)
+corrplot(residuos_D05$residuals, is.cor = FALSE)
+
+#cálculo da contribuição das células (Raça x D05)
+
+contrib_D05 <- 100*residuos_D05$residuals^2/residuos_D05$statistic
+round(contrib_D05, 3)
+corrplot(contrib_D05, is.cor = FALSE)
+
+#-----------------------------------------------------------------------------
+
+#Teste Qui-Quadrado Homogeneidade para D06 (Moradia em Cômodo)
+
+#Removendo Sem Dados ou Não Aplicável das categorias de D06
+
+resultados_D06 <- resultados_pb[resultados_pb$`D06`!= "Sem Dados ou Não Aplicável",] 
+
+#Tabela de contingência (Raça x D06)
+
+table(resultados_D06$`Cor ou raça`, resultados_D06$`D06`)
+
+racahab_D06 <- table(resultados_D06$`Cor ou raça`, resultados_D06$`D06`)
+
+EiD06 <- outer(rowSums(racahab_D06), colSums(racahab_D06), "*")/sum(racahab_D06)
+
+chisq.test(racahab_D06)$expected
+
+chisq.test(racahab_D06, correct = FALSE)
+
+#Gráfico de proporções de frequência (Raça x D06)
+
+ggstatsplot::ggbarstats(
+  data = resultados_D06,
+  x = `D06`, 
+  y = `Cor ou raça`, 
+  title = "Déficit habitacional por Moradia em Cômodo", 
+  xlab = "Cor ou raça", 
+  legend.title = "Moradia em Cômodo" 
+)
+
+#cálculo dos resíduos (Raça x D06)
+
+residuos_D06 <- chisq.test(resultados_D06$`Cor ou raça`, resultados_D06$`D06`)
+round(residuos_D06$residuals, 3)
+corrplot(residuos_D06$residuals, is.cor = FALSE)
+
+#cálculo da contribuição das células (Raça x D06)
+
+contrib_D06 <- 100*residuos_D06$residuals^2/residuos_D06$statistic
+round(contrib_D06, 3)
+corrplot(contrib_D06, is.cor = FALSE)
+
+#-----------------------------------------------------------------------------
+
+#Teste Qui-Quadrado Homogeneidade para D07 (Famílias em Situação de Rua)
+
+#Removendo Sem Dados ou Não Aplicável das categorias de D07
+
+resultados_D07 <- resultados_pb[resultados_pb$`D07`!= "Sem Dados ou Não Aplicável",] 
+
+#Tabela de contingência (Raça x D07)
+
+table(resultados_D07$`Cor ou raça`, resultados_D07$`D07`)
+
+racahab_D07 <- table(resultados_D07$`Cor ou raça`, resultados_D07$`D07`)
+
+EiD07 <- outer(rowSums(racahab_D07), colSums(racahab_D07), "*")/sum(racahab_D07)
+
+chisq.test(racahab_D07)$expected
+
+chisq.test(racahab_D07, correct = FALSE)
+
+#Gráfico de proporções de frequência (Raça x D07)
+
+ggstatsplot::ggbarstats(
+  data = resultados_D07,
+  x = `D07`, 
+  y = `Cor ou raça`, 
+  title = "Déficit habitacional por Famílias em Situação de Rua", 
+  xlab = "Cor ou raça", 
+  legend.title = "Famílias em Situação de Rua" 
+)
+
+#cálculo dos resíduos (Raça x D07)
+
+residuos_D07 <- chisq.test(resultados_D07$`Cor ou raça`, resultados_D07$`D07`)
+round(residuos_D07$residuals, 3)
+corrplot(residuos_D07$residuals, is.cor = FALSE)
+
+#cálculo da contribuição das células (Raça x D07)
+
+contrib_D07 <- 100*residuos_D07$residuals^2/residuos_D07$statistic
+round(contrib_D07, 3)
+corrplot(contrib_D07, is.cor = FALSE)
